@@ -9,10 +9,11 @@ public class CategoryType
 {
 	String category;
 	
+	
 	public CategoryType(String category)
 	{
 		this.category = category;
-	}
+	}	
 
 	public String getCategory()
 	{

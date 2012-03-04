@@ -111,7 +111,7 @@ public class Fetcher
 						+ metadata.getContinuation(), null).toURL();
 			} else
 			{
-				url = new URI("http", "www.google.com", "/reader/api/0/stream/contents/feed/" + this.feedUrl, "n=5", null).toURL();
+				url = new URI("http", "www.google.com", "/reader/api/0/stream/contents/feed/" + this.feedUrl, "n=1000", null).toURL();
 			}
 		}
 

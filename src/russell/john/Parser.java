@@ -38,7 +38,7 @@ public class Parser
 		if (data.has("title"))
 			metadata.setTitle(data.getString("title"));
 		if (data.has("continuation"))
-			metadata.setDescription(data.getString("continuation"));	
+			metadata.setContinuation(data.getString("continuation"));	
 		
 		// Collect the items
 		JSONArray itemsArray = data.getJSONArray("items");
@@ -87,7 +87,7 @@ public class Parser
 				if (itemsArray.getJSONObject(i).getJSONObject("summary").has("direction"))
 					item.setDirection(itemsArray.getJSONObject(i).getJSONObject("summary").getString("direction"));
 				if (itemsArray.getJSONObject(i).getJSONObject("summary").has("content"))
-					item.setDirection(itemsArray.getJSONObject(i).getJSONObject("summary").getString("content"));				
+					item.setContent(itemsArray.getJSONObject(i).getJSONObject("summary").getString("content"));				
 			}
 			
 			else if (itemsArray.getJSONObject(i).has("content"))
@@ -95,7 +95,7 @@ public class Parser
 				if (itemsArray.getJSONObject(i).getJSONObject("content").has("direction"))
 					item.setDirection(itemsArray.getJSONObject(i).getJSONObject("content").getString("direction"));
 				if (itemsArray.getJSONObject(i).getJSONObject("content").has("content"))
-					item.setDirection(itemsArray.getJSONObject(i).getJSONObject("content").getString("content"));	
+					item.setContent(itemsArray.getJSONObject(i).getJSONObject("content").getString("content"));	
 			}
 			
 			// Get liking users array TODO
@@ -110,9 +110,9 @@ public class Parser
 				if (itemsArray.getJSONObject(i).getJSONObject("origin").has("streamId"))
 					item.setStreamId(itemsArray.getJSONObject(i).getJSONObject("origin").getString("streamId"));
 				if (itemsArray.getJSONObject(i).getJSONObject("origin").has("title"))
-					item.setStreamId(itemsArray.getJSONObject(i).getJSONObject("origin").getString("title"));
+					item.setStreamTitle(itemsArray.getJSONObject(i).getJSONObject("origin").getString("title"));
 				if (itemsArray.getJSONObject(i).getJSONObject("origin").has("htmlUrl"))
-					item.setStreamId(itemsArray.getJSONObject(i).getJSONObject("origin").getString("htmlUrl"));				
+					item.setHtmlUrl(itemsArray.getJSONObject(i).getJSONObject("origin").getString("htmlUrl"));				
 			}
 			
 			// Store the ItemType to the arraylist

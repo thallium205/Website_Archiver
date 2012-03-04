@@ -23,7 +23,7 @@ public class MetadataType
 		title = "";
 		description = "";
 		continuation = "";
-		updated = null;
+		updated = new Date();
 	}
 
 	public String getDirection()

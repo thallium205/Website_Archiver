@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class ItemType
 {
+	Integer idItem; // Primary key
 	Boolean isReadStateLocked;
 	Date crawlTime;
 	Date timeStamp;
@@ -23,6 +24,8 @@ public class ItemType
 	String streamId;
 	String streamTitle;
 	String htmlUrl;
+	Integer Category_idCategory; // Foreign key
+	Integer Alternate_idAlternate; // Foreign key
 	
 	ArrayList<CategoryType> categories;
 	ArrayList<AlternateType> alternates;
@@ -32,19 +35,37 @@ public class ItemType
 	
 	public ItemType()
 	{
-		isReadStateLocked = null;
-		crawlTime = null;
-		timeStamp = null;
+		isReadStateLocked = false;
+		crawlTime = new Date();
+		timeStamp = new Date();
 		id = "";
 		title = "";
-		published = null;
-		updated = null;
+		published = new Date();
+		updated = new Date();
 		direction = "";
 		content = "";
 		author = "";
 		streamId = "";
 		streamTitle = "";
 		htmlUrl = "";		
+	}
+
+	/**
+	 * Primary key
+	 * @return
+	 */
+	public Integer getIdItem()
+	{
+		return idItem;
+	}
+
+	/**
+	 * Primary key 
+	 * @param idItem
+	 */
+	public void setIdItem(Integer idItem)
+	{
+		this.idItem = idItem;
 	}
 
 	public Boolean getIsReadStateLocked()
@@ -225,7 +246,25 @@ public class ItemType
 	public void setAnnotations(ArrayList<AnnotationType> annotations)
 	{
 		this.annotations = annotations;
+	}
+
+	public Integer getCategory_idCategory()
+	{
+		return Category_idCategory;
+	}
+
+	public void setCategory_idCategory(Integer category_idCategory)
+	{
+		Category_idCategory = category_idCategory;
+	}
+
+	public Integer getAlternate_idAlternate()
+	{
+		return Alternate_idAlternate;
+	}
+
+	public void setAlternate_idAlternate(Integer alternate_idAlternate)
+	{
+		Alternate_idAlternate = alternate_idAlternate;
 	}	
-	
-	
 }
