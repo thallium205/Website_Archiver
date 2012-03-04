@@ -10,9 +10,10 @@ public class AlternateType
 	String href;
 	String type;
 	
-	protected AlternateType()
+	public AlternateType(String href, String type)
 	{
-		
+		this.href = href;
+		this.type = type;
 	}
 
 	public String getHref()

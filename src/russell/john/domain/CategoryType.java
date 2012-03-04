@@ -9,9 +9,9 @@ public class CategoryType
 {
 	String category;
 	
-	protected CategoryType()
+	public CategoryType(String category)
 	{
-		
+		this.category = category;
 	}
 
 	public String getCategory()

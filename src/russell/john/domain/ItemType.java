@@ -30,9 +30,21 @@ public class ItemType
 	ArrayList<CommentType> comments;
 	ArrayList<AnnotationType> annotations;
 	
-	protected ItemType()
+	public ItemType()
 	{
-	
+		isReadStateLocked = null;
+		crawlTime = null;
+		timeStamp = null;
+		id = "";
+		title = "";
+		published = null;
+		updated = null;
+		direction = "";
+		content = "";
+		author = "";
+		streamId = "";
+		streamTitle = "";
+		htmlUrl = "";		
 	}
 
 	public Boolean getIsReadStateLocked()
@@ -163,5 +175,57 @@ public class ItemType
 	public void setHtmlUrl(String htmlUrl)
 	{
 		this.htmlUrl = htmlUrl;
+	}
+
+	public ArrayList<CategoryType> getCategories()
+	{
+		return categories;
+	}
+
+	public void setCategories(ArrayList<CategoryType> categories)
+	{
+		this.categories = categories;
+	}
+
+	public ArrayList<AlternateType> getAlternates()
+	{
+		return alternates;
+	}
+
+	public void setAlternates(ArrayList<AlternateType> alternates)
+	{
+		this.alternates = alternates;
+	}
+
+	public ArrayList<LikingUserType> getLikingUsers()
+	{
+		return likingUsers;
+	}
+
+	public void setLikingUsers(ArrayList<LikingUserType> likingUsers)
+	{
+		this.likingUsers = likingUsers;
+	}
+
+	public ArrayList<CommentType> getComments()
+	{
+		return comments;
+	}
+
+	public void setComments(ArrayList<CommentType> comments)
+	{
+		this.comments = comments;
+	}
+
+	public ArrayList<AnnotationType> getAnnotations()
+	{
+		return annotations;
+	}
+
+	public void setAnnotations(ArrayList<AnnotationType> annotations)
+	{
+		this.annotations = annotations;
 	}	
+	
+	
 }
