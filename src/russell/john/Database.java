@@ -11,12 +11,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.logging.Logger;
+
 import russell.john.domain.AlternateType;
 import russell.john.domain.CategoryType;
 import russell.john.domain.ItemType;
 
+/**
+ * Creates and adds data to a sqllite database
+ * @author John
+ *
+ */
 public class Database
 {
+	private static final Logger LOG = Logger.getLogger(Database.class.getName());
 	private static final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 
 	String filePath;
@@ -35,10 +43,12 @@ public class Database
 		this.filePath = filePath;
 		if (!new File(filePath).exists())
 		{
+			LOG.info("No database found.  Creating one...");
 			conn = DriverManager.getConnection("jdbc:sqlite:" + filePath);
 			buildDatabase();
 		} else
 		{
+			LOG.info("Database found.  Connecting...");
 			conn = DriverManager.getConnection("jdbc:sqlite:" + filePath);
 		}
 	}
@@ -52,7 +62,7 @@ public class Database
 		
 		PreparedStatement statement;
 		
-
+		LOG.info("Adding 1000 items to the database.");
 		for (Iterator<ItemType> itemiter = items.iterator(); itemiter.hasNext();)
 		{
 			item = itemiter.next();
@@ -82,12 +92,12 @@ public class Database
 			query = "INSERT INTO Item (isreadstatelocked, crawltime, timestamp, id, title, published, updated, direction, content, author, streamid, streamtitle, htmlurl, Category_category, Alternate_href) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			statement = conn.prepareStatement(query);
 			statement.setInt(1, item.getIsReadStateLocked() ? 1 : 0);
-			statement.setString(2, DATEFORMAT.format(item.getCrawlTime()));
-			statement.setString(3, DATEFORMAT.format(item.getTimeStamp()));
+			statement.setLong(2, item.getCrawlTime());
+			statement.setLong(3, item.getTimeStamp());
 			statement.setString(4, item.getId());
 			statement.setString(5, item.getTitle());
-			statement.setString(6, DATEFORMAT.format(item.getPublished()));
-			statement.setString(7, DATEFORMAT.format(item.getUpdated()));
+			statement.setLong(6, item.getPublished());
+			statement.setLong(7, item.getUpdated());
 			statement.setString(8, item.getDirection());
 			statement.setString(9, item.getContent());
 			statement.setString(10, item.getAuthor());
@@ -106,6 +116,8 @@ public class Database
 			// TODO Comment
 
 			// TODO Annotation
+			
+			LOG.info("Database done.");
 		}
 
 	}
@@ -116,15 +128,19 @@ public class Database
 		statement
 				.executeUpdate("CREATE TABLE Category (category TEXT, PRIMARY KEY(category))");
 		statement
-				.executeUpdate("CREATE TABLE Alternate (href TEXT, type TEXT, Item_idItem INTEGER, PRIMARY KEY (href))");
+				.executeUpdate("CREATE TABLE Alternate (href TEXT, type TEXT, PRIMARY KEY (href))");
 		statement
-				.executeUpdate("CREATE TABLE Item (idItem INTEGER, isreadstatelocked INTEGER, crawltime TEXT, timestamp TEXT, id INTEGER, title TEXT, published TEXT, updated TEXT, direction TEXT, content TEXT, author TEXT, streamid TEXT, streamtitle TEXT, htmlurl TEXT, Category_category TEXT, Alternate_href TEXT, PRIMARY KEY(idItem), FOREIGN KEY (Category_category) REFERENCES Category(category), FOREIGN KEY (Alternate_href) REFERENCES Alternate(href))");
+				.executeUpdate("CREATE TABLE Item (idItem INTEGER, isreadstatelocked INTEGER, crawltime INTEGER, timestamp INTEGER, id INTEGER, title TEXT, published INTEGER, updated INTEGER, direction TEXT, content TEXT, author TEXT, streamid TEXT, streamtitle TEXT, htmlurl TEXT, Category_category TEXT, Alternate_href TEXT, PRIMARY KEY(idItem), FOREIGN KEY (Category_category) REFERENCES Category(category), FOREIGN KEY (Alternate_href) REFERENCES Alternate(href))");
+		
+		// TODO
+		/*
 		statement
 				.executeUpdate("CREATE TABLE LikingUser (idLikingUser INTEGER, Item_idItem INTEGER, PRIMARY KEY (idLikingUser), FOREIGN KEY (Item_idItem) REFERENCES Item(idItem))");
 		statement
 				.executeUpdate("CREATE TABLE Comment (idComment INTEGER, Item_idItem INTEGER, PRIMARY KEY (idComment), FOREIGN KEY (Item_idItem) REFERENCES Item(idItem))");
 		statement
-				.executeUpdate("CREATE TABLE Annotation (idAnnotation INTEGER, Item_idItem INTEGER, PRIMARY KEY (idAnnotation), FOREIGN KEY (Item_idItem) REFERENCES Item(idItem))");
+			.executeUpdate("CREATE TABLE Annotation (idAnnotation INTEGER, Item_idItem INTEGER, PRIMARY KEY (idAnnotation), FOREIGN KEY (Item_idItem) REFERENCES Item(idItem))");
+			*/
 	}
 
 }

@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import org.json.JSONException;
 
@@ -26,6 +27,8 @@ import russell.john.domain.MetadataType;
  */
 public class Fetcher
 {
+	private static final Logger LOG = Logger.getLogger(Fetcher.class.getName());	
+	
 	private String feedUrl;
 	private String startTime;
 	private MetadataType metadata;
@@ -73,15 +76,19 @@ public class Fetcher
 	public ArrayList<ItemType> next() throws MalformedURLException, UnsupportedEncodingException, IOException, JSONException, URISyntaxException
 	{
 		// Download the feed
+		LOG.info("Downloading at most 1000 Items...");
 		data = downloadFeed();
 
 		// Parse the feed
+		LOG.info("Parsing 1000 Items...");
 		Parser parser = new Parser(data);
 
 		// Store the metadata
+		LOG.info("Storing the metadata...");
 		metadata = parser.getMetadata();
 
 		// return the items
+		LOG.info("Parser done.");
 		return parser.getItems();
 	}
 
@@ -97,7 +104,7 @@ public class Fetcher
 	 * @throws URISyntaxException
 	 */
 	private StringBuilder downloadFeed() throws MalformedURLException, UnsupportedEncodingException, IOException, URISyntaxException
-	{
+	{		
 		URL url;
 		URLConnection conn;
 		BufferedReader reader;

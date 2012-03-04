@@ -1,7 +1,7 @@
 package russell.john;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.logging.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +14,8 @@ import russell.john.domain.MetadataType;
 
 public class Parser
 {
+	private static final Logger LOG = Logger.getLogger(Parser.class.getName());
+	
 	private JSONObject data;
 	private MetadataType metadata;
 	private ArrayList<ItemType> items;
@@ -48,9 +50,9 @@ public class Parser
 			item = new ItemType();
 			
 			if (itemsArray.getJSONObject(i).has("crawlTimeMsec"))
-				item.setCrawlTime(new Date(itemsArray.getJSONObject(i).getLong("crawlTimeMsec") * 1000));
+				item.setCrawlTime(itemsArray.getJSONObject(i).getLong("crawlTimeMsec"));
 			if (itemsArray.getJSONObject(i).has("timestampUsec"))
-				item.setTimeStamp(new Date(itemsArray.getJSONObject(i).getLong("timestampUsec") * 1000));
+				item.setTimeStamp(itemsArray.getJSONObject(i).getLong("timestampUsec"));
 			if (itemsArray.getJSONObject(i).has("id"))
 				item.setId(itemsArray.getJSONObject(i).getString("id"));
 			
@@ -67,9 +69,9 @@ public class Parser
 			if (itemsArray.getJSONObject(i).has("title"))
 				item.setTitle(itemsArray.getJSONObject(i).getString("title"));
 			if (itemsArray.getJSONObject(i).has("published"))
-				item.setPublished(new Date(itemsArray.getJSONObject(i).getLong("published") * 1000));
+				item.setPublished(itemsArray.getJSONObject(i).getLong("published"));
 			if (itemsArray.getJSONObject(i).has("updated"))
-				item.setUpdated(new Date(itemsArray.getJSONObject(i).getLong("updated") * 1000));
+				item.setUpdated(itemsArray.getJSONObject(i).getLong("updated"));
 			
 			// Get alternate array
 			JSONArray altArray = itemsArray.getJSONObject(i).getJSONArray("alternate");

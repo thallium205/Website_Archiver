@@ -1,18 +1,18 @@
 package russell.john;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONException;
 
-import russell.john.domain.ItemType;
-
 public class Main
 {
+	private static final Logger LOG = Logger.getLogger(Main.class.getName());
+	
 	static private Fetcher fetcher;
 
 	/**
@@ -36,42 +36,37 @@ public class Main
 			{
 				db.addItems(fetcher.next());				
 			}
+			LOG.info("The application has terminated gracefully.");
 		}
 
 		catch (MalformedURLException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
 		}
 
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
 		}
 
 		catch (JSONException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Parser has probably encountered an error.", e);
 		} 
 		
 		catch (URISyntaxException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
 		} 
 		
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Database has probably encountered an error.", e);
 		} 
 		
 		catch (ClassNotFoundException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "The Database has probably encountered an error.", e);
 		}
 	}
 }

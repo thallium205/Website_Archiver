@@ -14,7 +14,7 @@ public class MetadataType
 	String title;
 	String description;
 	String continuation;	
-	Date updated;
+	Long updated;
 	
 	public MetadataType()
 	{
@@ -23,7 +23,7 @@ public class MetadataType
 		title = "";
 		description = "";
 		continuation = "";
-		updated = new Date();
+		updated = (long) 0;
 	}
 
 	public String getDirection()
@@ -76,12 +76,12 @@ public class MetadataType
 		this.continuation = continuation;
 	}
 
-	public Date getUpdated()
+	public Long getUpdated()
 	{
 		return updated;
 	}
 
-	public void setUpdated(Date updated)
+	public void setUpdated(Long updated)
 	{
 		this.updated = updated;
 	}	

@@ -1,8 +1,6 @@
 package russell.john.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 /**
  * The information object returned from a google reader feed
  * @author John
@@ -12,12 +10,12 @@ public class ItemType
 {
 	Integer idItem; // Primary key
 	Boolean isReadStateLocked;
-	Date crawlTime;
-	Date timeStamp;
+	Long crawlTime;
+	Long timeStamp;
 	String id;
 	String title;
-	Date published;
-	Date updated;
+	Long published;
+	Long updated;
 	String direction;
 	String content;
 	String author;
@@ -36,12 +34,12 @@ public class ItemType
 	public ItemType()
 	{
 		isReadStateLocked = false;
-		crawlTime = new Date();
-		timeStamp = new Date();
+		crawlTime = (long) 0;
+		timeStamp = (long) 0;
 		id = "";
 		title = "";
-		published = new Date();
-		updated = new Date();
+		published = (long) 0;
+		updated = (long) 0;
 		direction = "";
 		content = "";
 		author = "";
@@ -78,26 +76,6 @@ public class ItemType
 		this.isReadStateLocked = isReadStateLocked;
 	}
 
-	public Date getCrawlTime()
-	{
-		return crawlTime;
-	}
-
-	public void setCrawlTime(Date crawlTime)
-	{
-		this.crawlTime = crawlTime;
-	}
-
-	public Date getTimeStamp()
-	{
-		return timeStamp;
-	}
-
-	public void setTimeStamp(Date timeStamp)
-	{
-		this.timeStamp = timeStamp;
-	}
-
 	public String getId()
 	{
 		return id;
@@ -116,26 +94,6 @@ public class ItemType
 	public void setTitle(String title)
 	{
 		this.title = title;
-	}
-
-	public Date getPublished()
-	{
-		return published;
-	}
-
-	public void setPublished(Date published)
-	{
-		this.published = published;
-	}
-
-	public Date getUpdated()
-	{
-		return updated;
-	}
-
-	public void setUpdated(Date updated)
-	{
-		this.updated = updated;
 	}
 
 	public String getDirection()
@@ -266,5 +224,47 @@ public class ItemType
 	public void setAlternate_idAlternate(Integer alternate_idAlternate)
 	{
 		Alternate_idAlternate = alternate_idAlternate;
+	}
+
+	public Long getCrawlTime()
+	{
+		return crawlTime;
+	}
+
+	public void setCrawlTime(Long crawlTime)
+	{
+		this.crawlTime = crawlTime;
+	}
+
+	public Long getTimeStamp()
+	{
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Long timeStamp)
+	{
+		this.timeStamp = timeStamp;
+	}
+
+	public Long getPublished()
+	{
+		return published;
+	}
+
+	public void setPublished(Long published)
+	{
+		this.published = published;
+	}
+
+	public Long getUpdated()
+	{
+		return updated;
+	}
+
+	public void setUpdated(Long updated)
+	{
+		this.updated = updated;
 	}	
+	
+	
 }
