@@ -120,6 +120,7 @@ public class Parser
 			// Store the ItemType to the arraylist
 			items.add(item);
 		}
+		LOG.info("Parser done at: " + itemsArray.length() + " item(s).");
 	}
 	
 	/**

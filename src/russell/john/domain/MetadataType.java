@@ -1,7 +1,5 @@
 package russell.john.domain;
 
-import java.util.Date;
-
 /**
  * This class represents the data that is returned with the stream but does not contain any relevant data to the feed itself
  * @author John

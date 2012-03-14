@@ -31,7 +31,7 @@ public class Fetcher
 	
 	private String feedUrl;
 	private String startTime;
-	private MetadataType metadata;
+	public MetadataType metadata; // Public for logging purposes
 
 	private StringBuilder data;
 
@@ -60,7 +60,10 @@ public class Fetcher
 		else if (metadata.getContinuation().isEmpty())
 			return false;
 		else
+		{
+			LOG.info("Fetching at continuation: " + metadata.getContinuation());
 			return true;
+		}
 	}
 
 	/**
@@ -88,7 +91,7 @@ public class Fetcher
 		metadata = parser.getMetadata();
 
 		// return the items
-		LOG.info("Parser done.");
+		LOG.info("Fetcher done.");
 		return parser.getItems();
 	}
 

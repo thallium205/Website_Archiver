@@ -41,32 +41,32 @@ public class Main
 
 		catch (MalformedURLException e)
 		{
-			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		}
 
 		catch (IOException e)
 		{
-			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		}
 
 		catch (JSONException e)
 		{
-			LOG.log(Level.SEVERE, "The Parser has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Parser has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		} 
 		
 		catch (URISyntaxException e)
 		{
-			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Fetcher has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		} 
 		
 		catch (SQLException e)
 		{
-			LOG.log(Level.SEVERE, "The Database has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Database has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		} 
 		
 		catch (ClassNotFoundException e)
 		{
-			LOG.log(Level.SEVERE, "The Database has probably encountered an error.", e);
+			LOG.log(Level.SEVERE, "The Database has probably encountered an error at continuation: " + fetcher.metadata.getContinuation(), e);
 		}
 	}
 }

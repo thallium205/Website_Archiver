@@ -1,0 +1,5 @@
+A tiny but relatively powerful application I wrote that exploits the awesome archiving power of Google Reader to let you archive any website into a sqllite database in a matter of seconds.
+
+Usage:  java -jar http://googleblog.blogspot.com/feeds/posts/default 0 C:\Users\John\Desktop\google.sqlite 
+
+This will download the entire google blog, starting at time 0, and storing it to the specified location.  Enjoy!

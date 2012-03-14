@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -25,7 +23,6 @@ import russell.john.domain.ItemType;
 public class Database
 {
 	private static final Logger LOG = Logger.getLogger(Database.class.getName());
-	private static final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 
 	String filePath;
 	Connection conn;
@@ -62,7 +59,7 @@ public class Database
 		
 		PreparedStatement statement;
 		
-		LOG.info("Adding 1000 items to the database.");
+		LOG.info("Adding 1000 items to the database...");
 		for (Iterator<ItemType> itemiter = items.iterator(); itemiter.hasNext();)
 		{
 			item = itemiter.next();
@@ -115,11 +112,10 @@ public class Database
 
 			// TODO Comment
 
-			// TODO Annotation
+			// TODO Annotation		
 			
-			LOG.info("Database done.");
 		}
-
+		LOG.info("Database done.");
 	}
 
 	private void buildDatabase() throws SQLException
